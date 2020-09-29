@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 	<head>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="../static/styles/4-common.css?{{ cache_id }}">
-		<link rel="stylesheet" href="../static/styles/3-header.css?{{ cache_id }}">
-		<link rel="stylesheet" href="../static/styles/3-footer.css?{{ cache_id }}">
-		<link rel="stylesheet" href="../static/styles/6-filters.css?{{ cache_id }}">
-		<link rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}">
-		<link rel="icon" href="../static/images/icon.png?{{ cache_id }}" type="image/png">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?{{cache_id}}">
+		<link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{cache_id}}">
+		<link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css?{{cache_id}}">
+		<link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css?{{cache_id}}">
+		<link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{cache_id}}">
+		<link rel="icon" href="../static/images/icon.png" />
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="../static/scripts/3-hbnb.js?{{ cache_id }}"></script>
-
-		<title>AirBnb Clone</title>
+		<script src="../static/scripts/2-hbnb.js"></script>
+		<title>HBnB</title>
 	</head>
 
 	<body>
@@ -25,42 +24,46 @@
 				<div class="locations">
 					<h3>States</h3>
 					<h4>&nbsp;</h4>
-					<ul class="popover">
-						{% for state in states.values()|sort(attribute='name') %}
-						<li>
-							<h2>{{ state.name }}</h2>
-							<ul>
-								{% for city in state.cities|sort(attribute='name') %}
-								<li>{{ city.name }}</li>
-								{% endfor %}
-							</ul>
-						</li>
-						{% endfor %}
-					</ul>
+					<div class="popover">
+						<ul>
+							{% for state in states %}
+							<li>
+								<h2>{{ state[0].name }}:</h2>
+								<ul>
+									{% for city in state[1] %}
+									<li>{{ city.name }}</li>
+									{% endfor %}
+								</ul>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
 				</div>
 				<div class="amenities">
 					<h3>Amenities</h3>
-					<h4>&nbsp;</h4>
-					<ul class="popover">
-						{% for amty in amenities.values() %}
-						<li>
-							<input type="checkbox" data-id="{{ amty.id }}" data-name="{{ amty.name }}">{{ amty.name }}
-						</li>
-						{% endfor %}
-					</ul>
+					<h4 id="select">&nbsp;</h4>
+					<div class="popover">
+						<ul>
+							{% for amenity in amenities %}
+							<li>
+								<input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}"
+									size="10">
+								<label for="{{ amenity.name }}"></label>{{ amenity.name }}</label>
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
 				</div>
-				<button>
-					Search
-				</button>
+				<button type="button">Search</button>
 			</section>
-			<section class="places">
+			<div class="placesh1">
 				<h1>Places</h1>
+			</div>
+			<section class="places">
 			</section>
 		</div>
 		<footer>
-			<p>
-				Holberton School
-			</p>
+			<p>Holberton School</p>
 		</footer>
 	</body>
 

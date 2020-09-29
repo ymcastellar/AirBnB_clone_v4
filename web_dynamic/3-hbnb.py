@@ -36,12 +36,12 @@ def hbnb():
     places = sorted(places, key=lambda k: k.name)
 
     return render_template('3-hbnb.html',
+                           cache_id=uuid.uuid4(),
                            states=st_ct,
                            amenities=amenities,
-                           places=places,
-                           cache_id=uuid.uuid4())
+                           places=places)
 
 
 if __name__ == "__main__":
     """ Main Function """
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
